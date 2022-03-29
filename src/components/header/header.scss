@@ -1,0 +1,22 @@
+.header {
+  background: #1B1E2C;
+  color: white;
+  display: flex;
+  font-size: 28px;
+  align-items: center;
+  justify-content: space-around;
+  height: 10vh;
+
+  &__link {
+    color: white;
+    text-decoration: none;
+    padding-bottom: 5px;
+    &:first-child {
+      margin-right: 40px;
+      border-bottom: 2px solid #fff;
+    }
+    &:hover {
+      border-bottom: 2px solid #fff;
+    }
+  }
+}
