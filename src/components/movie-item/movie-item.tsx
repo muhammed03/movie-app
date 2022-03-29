@@ -14,7 +14,7 @@ type Props = {
   onItemClick: (v: Movie) => void;
 };
 
-const MovieItem: React.FC<Props> = ({ movie, onItemClick }) => {
+const MovieItem: React.FC<Props> = ({ movie, isSelected = false, onItemClick }) => {
   const [state, setState] = useState({
     loading: false,
     selected: false,
@@ -37,7 +37,7 @@ const MovieItem: React.FC<Props> = ({ movie, onItemClick }) => {
     }));
   };
 
-  const playerBtn = state.selected ? (
+  const playerBtn = isSelected ? (
     <img className="movie-player-img" src={pauseButtonImg} alt="pause" />
   ) : (
     <img className="movie-player-img" src={playButtonImg} alt="play" />
