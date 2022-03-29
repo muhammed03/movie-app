@@ -1,15 +1,15 @@
 import React from 'react';
 
-import './header.scss';
+import style from './header.module.scss';
 const Header: React.FC = (): JSX.Element => {
   return (
-    <div className="header">
+    <div className={style.header}>
       <div className="header__logo">LOGO</div>
       <div className="header__links">
-        <a className="header__link" href="/">
+        <a className={style.header__link} href="/">
           Movies
         </a>
-        <a className="header__link" href="#actors">
+        <a className={style.header__link} href="#actors">
           Actors
         </a>
       </div>
