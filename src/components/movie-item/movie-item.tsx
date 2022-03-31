@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+
+import MovieContext from '../movie-context/movie-context';
 
 import { Movie } from '../../types';
 import './movie-item.scss';
@@ -9,19 +11,18 @@ import watchLaterBtnImg from '../../assets/watch-later.svg';
 import tickBtnImg from '../../assets/tick.svg';
 
 type Props = {
-  movie: Movie;
-  isSelected: boolean;
-  onItemClick: (v: Movie) => void;
+  movieData: Movie;
 };
 
-const MovieItem: React.FC<Props> = ({ movie, isSelected = false, onItemClick }) => {
+const MovieItem: React.FC<Props> = ({ movieData }) => {
+  const { movie, changeMovie } = useContext(MovieContext);
+
   const [state, setState] = useState({
     loading: false,
     selected: false,
     addedToWatchLater: false,
   });
 
-  console.log(state);
   const watchLaterClick = () => {
     setState((newState) => ({
       ...newState,
@@ -30,12 +31,13 @@ const MovieItem: React.FC<Props> = ({ movie, isSelected = false, onItemClick }) 
   };
 
   const onPlayButtonClick = () => {
-    onItemClick(movie);
+    changeMovie(movieData);
     setState((newState) => ({
       ...newState,
       selected: !state.selected,
     }));
   };
+  const isSelected = movieData.id === movie?.id;
 
   const playerBtn = isSelected ? (
     <img className="movie-player-img" src={pauseButtonImg} alt="pause" />
@@ -51,9 +53,9 @@ const MovieItem: React.FC<Props> = ({ movie, isSelected = false, onItemClick }) 
 
   return (
     <div className="movie-item">
-      <img className="movie-img" src={movie.image} alt="movie" />
+      <img className="movie-img" src={movieData.image} alt="movie" />
       <div className="movie-text">
-        <h3>{movie.title}</h3>
+        <h3>{movieData.title}</h3>
       </div>
       <div className="movie-player-container">
         <button onClick={onPlayButtonClick} className="movie-player-btn movie-item-btn">

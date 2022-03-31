@@ -6,21 +6,17 @@ import { Movie } from '../../types';
 import MovieContext from '../movie-context/movie-context';
 
 const Main = () => {
-  const [selectedMovie, setSelectedMovie] = useState<Movie>(movies[0]);
+  const [movie, setSelectedMovie] = useState<Movie | null>(null);
 
-  const movieClickHandler = (v: Movie) => {
-    setSelectedMovie(v);
+  const changeMovie = (m: Movie | null) => {
+    setSelectedMovie(m);
   };
 
   return (
-    <MovieContext.Provider value={selectedMovie}>
+    <MovieContext.Provider value={{ movie, changeMovie }}>
       <div className="main">
-        <Player url={selectedMovie.trailer} />
-        <MoviesList
-          selectedId={selectedMovie?.id}
-          onMovieClick={movieClickHandler}
-          movies={movies}
-        />
+        <Player url={movie?.trailer} />
+        <MoviesList movies={movies} />
       </div>
     </MovieContext.Provider>
   );
