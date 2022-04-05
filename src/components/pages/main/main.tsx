@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import Player from '../player/player';
-import MoviesList from '../movie-list/movies-list';
-import { movies } from '../../mock';
-import { Movie } from '../../types';
-import MovieContext from '../movie-context/movie-context';
+import Player from '../../player/player';
+import MoviesList from '../../movie-list/movies-list';
+import { movies } from '../../../mock';
+import { Movie } from '../../../types';
+import MovieContext from '../../movie-context/movie-context';
 
 const Main = () => {
   const [movie, setSelectedMovie] = useState<Movie | null>(null);

@@ -11,9 +11,8 @@
     color: white;
     text-decoration: none;
     padding-bottom: 5px;
-    &:first-child {
+    &:not(:last-child) {
       margin-right: 40px;
-      border-bottom: 2px solid #fff;
     }
     &:hover {
       border-bottom: 2px solid #fff;

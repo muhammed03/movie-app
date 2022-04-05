@@ -1,0 +1,20 @@
+.form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+}
+
+.form {
+  min-width: 400px;
+}
+
+.form-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.submit-btn {
+  margin: 20px auto;
+}
