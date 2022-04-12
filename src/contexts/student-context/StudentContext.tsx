@@ -34,6 +34,11 @@ function reducer(state: any, action: Action) {
         ...state,
         message: action.payload,
       };
+    case 'DELETE_STUDENT':
+      return {
+        ...state,
+        message: action.payload,
+      };
     default:
       return state;
   }

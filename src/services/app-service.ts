@@ -19,4 +19,8 @@ export default class AppService {
   editStudent = (id: string, data: Partial<Student>) => {
     return axios.put<Student>(`${this.API_ROOT}/students/${id}`, data).then((res) => res.data);
   };
+
+  delStudent = (id: string) => {
+    return axios.delete(`${this.API_ROOT}/students/${id}`).then((res) => res.data);
+  };
 }

@@ -13,7 +13,13 @@ const StudentsList = () => {
     appService.getStudents().then((res) => {
       dispatch({ type: 'GET_STUDENTS', payload: res });
     });
-  }, []);
+  }, [state]);
+
+  const onDelete = (id: string) => {
+    appService.delStudent(id).then((res) => {
+      dispatch({ type: 'DELETE_STUDENT', payload: res });
+    });
+  };
 
   return (
     <div>
@@ -43,6 +49,9 @@ const StudentsList = () => {
                   View
                 </Link>
                 <Link to={`/students/edit/${student.id}`}>Edit</Link>
+              </td>
+              <td>
+                <button onClick={() => onDelete(student.id)}>Delete Student</button>
               </td>
             </tr>
           ))}
