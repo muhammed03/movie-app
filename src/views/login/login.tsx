@@ -1,7 +1,7 @@
 import React, { FormEvent, useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './login.scss';
-import LoginContext, { userStates } from '../../login-context/login-context';
+import LoginContext, { userStates } from '../../contexts/login-context/login-context';
 
 const Login: React.FC = () => {
   const navigateHook = useNavigate();

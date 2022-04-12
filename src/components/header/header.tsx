@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import LoginContext, { userStates } from '../login-context/login-context';
+import LoginContext, { userStates } from '../../contexts/login-context/login-context';
 import './style.scss';
 
 const Header: React.FC = (): JSX.Element => {
@@ -43,13 +43,14 @@ const Header: React.FC = (): JSX.Element => {
           <ul className="navbar-nav me-auto">
             <li className="nav-item">
               <Link className="nav-link active" to="/">
-                Movies
+                Home
                 <span className="visually-hidden">(current)</span>
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/actors">
-                Actors
+              <Link className="nav-link active" to="/students">
+                Students
+                {/*<span className="visually-hidden">(current)</span>*/}
               </Link>
             </li>
             {content}
