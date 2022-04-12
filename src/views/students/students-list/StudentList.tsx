@@ -2,6 +2,8 @@ import { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { StudentContext } from '../../../contexts/student-context/StudentContext';
 import AppService from '../../../services/app-service';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import './style.scss';
 
@@ -15,14 +17,16 @@ const StudentsList = () => {
     });
   }, [state]);
 
-  const onDelete = (id: string) => {
+  const onDelete = (id: string, name: string) => {
     appService.delStudent(id).then((res) => {
       dispatch({ type: 'DELETE_STUDENT', payload: res });
     });
+    toast(`Student with name: "${name}" was deleted`);
   };
 
   return (
     <div>
+      <ToastContainer />
       <h2>Students</h2>
       <Link to="/students/create">Create</Link>
       <table style={{ width: '100%' }}>
@@ -51,7 +55,9 @@ const StudentsList = () => {
                 <Link to={`/students/edit/${student.id}`}>Edit</Link>
               </td>
               <td>
-                <button onClick={() => onDelete(student.id)}>Delete Student</button>
+                <button onClick={() => onDelete(student.id, student.firstName)}>
+                  Delete Student
+                </button>
               </td>
             </tr>
           ))}
