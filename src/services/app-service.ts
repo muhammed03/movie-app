@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Student } from '../types';
+import { Faculty, Student } from '../types';
 
 export default class AppService {
   API_ROOT = 'https://ca-api.witharts.kz';
@@ -22,5 +22,25 @@ export default class AppService {
 
   delStudent = (id: string) => {
     return axios.delete(`${this.API_ROOT}/students/${id}`).then((res) => res.data);
+  };
+
+  getFaculties = () => {
+    return axios.get<Faculty[]>(`${this.API_ROOT}/faculties`).then((res) => res.data);
+  };
+
+  getFaculty = (id: string) => {
+    return axios.get<Faculty>(`${this.API_ROOT}/faculties/${id}`).then((res) => res.data);
+  };
+
+  createFaculty = (data: Partial<Faculty>) => {
+    return axios.post<Faculty>(`${this.API_ROOT}/faculties`, data).then((res) => res.data);
+  };
+
+  editFaculty = (id: string, data: Partial<Faculty>) => {
+    return axios.put<Faculty>(`${this.API_ROOT}/faculties/${id}`, data).then((res) => res.data);
+  };
+
+  delFaculty = (id: string) => {
+    return axios.delete(`${this.API_ROOT}/faculties/${id}`).then((res) => res.data);
   };
 }

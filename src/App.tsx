@@ -9,6 +9,10 @@ import StudentsList from './views/students/students-list/StudentList';
 import StudentDetails from './views/students/student-details/StudentDetails';
 import StudentCreateForm from './views/students/student-form/StudentCreateForm';
 import StudentEditForm from './views/students/student-form/StudentEditForm';
+import FacultyList from './views/faculties/faculty-list/FacultyList';
+import FacultyEditForm from './views/faculties/faculty-form/FacultyEditForm';
+import FacultyCreateForm from './views/faculties/faculty-form/FacultyCreateForm';
+
 import LoginContext, { userStates } from './contexts/login-context/login-context';
 
 const App = () => {
@@ -31,6 +35,9 @@ const App = () => {
               <Route path={'/students/:id'} element={<StudentDetails />} />
               <Route path={'/students/create'} element={<StudentCreateForm />} />
               <Route path={'/students/edit/:id'} element={<StudentEditForm />} />
+              <Route path={'/faculties'} element={<FacultyList />} />
+              <Route path={'/faculties/create'} element={<FacultyCreateForm />} />
+              <Route path={'/faculties/edit/:id'} element={<FacultyEditForm />} />
               <Route path="*" element={<h1>404, Not Found</h1>} />
             </Routes>
           </LoginContext.Provider>

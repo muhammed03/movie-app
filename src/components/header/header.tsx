@@ -50,7 +50,11 @@ const Header: React.FC = (): JSX.Element => {
             <li className="nav-item">
               <Link className="nav-link active" to="/students">
                 Students
-                {/*<span className="visually-hidden">(current)</span>*/}
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link active" to="/faculties">
+                Faculties
               </Link>
             </li>
             {content}

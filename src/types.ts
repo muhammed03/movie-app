@@ -8,3 +8,8 @@ export interface Student {
   score: number;
   courses: Course[];
 }
+
+export interface Faculty {
+  id: string;
+  name: string;
+}
