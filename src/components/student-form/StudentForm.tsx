@@ -28,7 +28,6 @@ const StudentForm: React.FC<Props> = ({ initialValues, onSubmit }) => {
   };
 
   const addCourse = () => {
-    console.log(courseName);
     if (courseName && courseName.trim()) {
       setValues((v) => ({
         ...v,
