@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Student } from '../types';
 
-export default class AppService {
+class AppService {
   API_ROOT = 'https://ca-api.witharts.kz';
 
   getStudents = () => {
@@ -24,3 +24,5 @@ export default class AppService {
     return axios.delete(`${this.API_ROOT}/students/${id}`).then((res) => res.data);
   };
 }
+
+export default new AppService();

@@ -34,10 +34,10 @@ function reducer(state: any, action: Action) {
         ...state,
         message: action.payload,
       };
-    case 'DELETE_STUDENT':
+    case 'UPDATE_STUDENT_LIST':
       return {
-        ...state,
-        message: action.payload,
+        message: state.message,
+        students: action.payload,
       };
     default:
       return state;

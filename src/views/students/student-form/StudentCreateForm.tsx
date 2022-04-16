@@ -6,21 +6,19 @@ import AppService from '../../../services/app-service';
 import { Student } from '../../../types';
 
 const StudentCreate = () => {
-  const appService = new AppService();
   const navigate = useNavigate();
 
   const { state, dispatch } = useContext(StudentContext);
 
   const onFormSubmit = (data: Partial<Student>) => {
-    appService
-      .createStudent(data)
+    AppService.createStudent(data)
       .then((res) => {
         dispatch({ type: 'CREATE_STUDENT', payload: 'Student was created!' });
         if (res.id) {
           navigate('/students');
         }
       })
-      .catch((err) => {
+      .catch(() => {
         dispatch({
           type: 'CREATE_STUDENT',
           payload: 'Student creation failed!',

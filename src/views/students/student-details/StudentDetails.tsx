@@ -7,13 +7,11 @@ const StudentDetails = () => {
   const { id } = useParams();
   const [student, setStudent] = useState<Student>();
 
-  const appService = new AppService();
-
   useEffect(() => {
     if (!id) {
       return;
     }
-    appService.getStudent(id).then((res) => {
+    AppService.getStudent(id).then((res) => {
       setStudent(res);
     });
   }, [id]);

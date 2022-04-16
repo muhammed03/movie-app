@@ -6,22 +6,27 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import './style.scss';
+import { Student } from '../../../types';
 
 const StudentsList = () => {
-  const appService = new AppService();
   const { state, dispatch } = useContext(StudentContext);
 
   useEffect(() => {
-    appService.getStudents().then((res) => {
+    AppService.getStudents().then((res) => {
       dispatch({ type: 'GET_STUDENTS', payload: res });
     });
-  }, [state]);
+  }, []);
 
   const onDelete = (id: string, name: string) => {
-    appService.delStudent(id).then((res) => {
-      dispatch({ type: 'DELETE_STUDENT', payload: res });
-    });
-    toast(`Student with name: "${name}" was deleted`);
+    AppService.delStudent(id)
+      .then((res) => {
+        const updatedStudentList = state.students.filter((student: Student) => student.id !== id);
+        dispatch({ type: 'UPDATE_STUDENT_LIST', payload: updatedStudentList });
+        toast(`Student with name: "${name}" was deleted`);
+      })
+      .catch(() => {
+        toast(`Error during deletion of student with id ${id}`);
+      });
   };
 
   return (

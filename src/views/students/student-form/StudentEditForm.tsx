@@ -11,13 +11,11 @@ const StudentEdit = () => {
   const [student, setStudent] = useState<Student>();
   const { dispatch } = useContext(StudentContext);
 
-  const appService = new AppService();
-
   useEffect(() => {
     if (!id) {
       return;
     }
-    appService.getStudent(id).then((res) => {
+    AppService.getStudent(id).then((res) => {
       setStudent(res);
     });
   }, [id]);
@@ -28,7 +26,7 @@ const StudentEdit = () => {
       return;
     }
 
-    appService.editStudent(id, data).then((res) => {
+    AppService.editStudent(id, data).then(() => {
       dispatch({ type: 'EDIT_STUDENT', payload: 'Student was edited!' });
       navigate(`/students/${id}`);
     });
