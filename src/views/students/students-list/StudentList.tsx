@@ -2,14 +2,14 @@ import { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { StudentContext } from '../../../contexts/student-context/StudentContext';
 import AppService from '../../../services/app-service';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToasterContext } from '../../../contexts/toaster-context/ToasterContext';
 
 import './style.scss';
 import { Student } from '../../../types';
 
 const StudentsList = () => {
   const { state, dispatch } = useContext(StudentContext);
+  const { dispatch: toastDispatch } = useContext(ToasterContext);
 
   useEffect(() => {
     AppService.getStudents().then((res) => {
@@ -22,16 +22,25 @@ const StudentsList = () => {
       .then((res) => {
         const updatedStudentList = state.students.filter((student: Student) => student.id !== id);
         dispatch({ type: 'UPDATE_STUDENT_LIST', payload: updatedStudentList });
-        toast(`Student with name: "${name}" was deleted`);
+        toastDispatch({
+          type: 'SUCCESS',
+          payload: {
+            message: 'Student was successfully deleted',
+          },
+        });
       })
       .catch(() => {
-        toast(`Error during deletion of student with id ${id}`);
+        toastDispatch({
+          type: 'ERROR',
+          payload: {
+            message: 'Student deletion was failed',
+          },
+        });
       });
   };
 
   return (
     <div>
-      <ToastContainer />
       <h2>Students</h2>
       <Link to="/students/create">Create</Link>
       <table style={{ width: '100%' }}>
